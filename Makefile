@@ -69,7 +69,16 @@ docker_test_integration:
 docker_test_lint:
 	docker run --rm -it \
 		-v "$(CURDIR)":/workspace \
-		gcr.io/cloud-build-bharath-org-gh/cft/developer-tools:0.14 \
+		cft/developer-tools:0.14.0 \
+		/usr/local/bin/test_lint.sh
+
+# Execute lint tests within the docker container
+.PHONY: docker_test_lint_parallel
+docker_test_lint:
+	docker run --rm -it \
+		-e ENABLE_PARALLEL=1 \
+		-v "$(CURDIR)":/workspace \
+		cft/developer-tools:0.14.0 \
 		/usr/local/bin/test_lint.sh
 
 # Generate documentation
