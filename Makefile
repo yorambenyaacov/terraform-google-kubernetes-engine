@@ -74,7 +74,7 @@ docker_test_lint:
 
 # Execute lint tests within the docker container
 .PHONY: docker_test_lint_parallel
-docker_test_lint:
+docker_test_lint_parallel:
 	docker run --rm -it \
 		-e ENABLE_PARALLEL=1 \
 		-v "$(CURDIR)":/workspace \
